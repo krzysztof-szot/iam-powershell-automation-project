@@ -1,4 +1,4 @@
-# IAM PowerShell Automation Project
+# IAM PowerShell Automation Project #
 
 <p align="center">
   <img alt="8 planned labs" src="https://img.shields.io/badge/LABS-8%20PLANNED-6f42c1?style=for-the-badge">
