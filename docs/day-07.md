@@ -1,4 +1,4 @@
-# Day 07 — Pester tests and GitHub Actions
+# Day 07 — Build the Joiner–Mover–Leaver automation
 
 **Status** · Planned
 
@@ -6,14 +6,17 @@
 
 ## Objective
 
-Automate offline validation of the PowerShell logic and keep live lab verification separate.
+Combine the earlier AD exercises into one PowerShell workflow for synthetic HR events.
 
 ## Implementation plan
 
-1. Extend the starter Pester checks with mocks for AD DS and Graph. Cover invalid data, scope checks, dry-run behavior and repeated runs.
-2. Cover partial execution and resume behavior. Assert the expected write calls and ordering.
-3. Run the same suite locally and in GitHub Actions. Keep integration results in the daily test record.
+1. Load the [synthetic events](../samples/hr-events.example.csv), the [access matrix](../config/access-matrix.example.json) and local lab configuration. Validate the event type, employee identity, target domain and OU, and the managed groups before writing.
+2. Plan each event against current directory state. Joiner creates the lab account and grants the intended group. Mover removes the old managed group before granting the new one. Leaver disables the account and removes its managed memberships.
+3. Default to a read-only plan. Require explicit `Apply` intent for writes and guard writes with `SupportsShouldProcess` and `$PSCmdlet.ShouldProcess()` so `-WhatIf` also preserves directory state.
+4. Record the event ID, step and outcome. On a partial failure, read current state before continuing and compute the remaining operations. Use the [recovery runbook](recovery-runbook.md) to record the exercise.
 
 ## Verification
 
-Record observed results and deviations in the test record. Capture the planned evidence after running each scenario.
+Record the observed outcome in the test record and capture the planned screenshots after each scenario.
+
+- [PowerShell ShouldProcess and WhatIf](https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess)

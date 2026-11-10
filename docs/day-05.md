@@ -1,4 +1,4 @@
-# Day 05 — Cloud-only lifecycle in Entra ID Free
+# Day 05 — Entra security groups and manual access review
 
 **Status** · Planned
 
@@ -6,14 +6,15 @@
 
 ## Objective
 
-Demonstrate the same policy against separate cloud-only lab accounts and static Entra security groups.
+Manage direct memberships in static Entra security groups and use a report to support a manual access decision.
 
 ## Implementation plan
 
-1. Use Microsoft Graph PowerShell with delegated authentication. Verify the expected tenant, operator and permitted cloud group IDs.
-2. Repeat Joiner, Mover and Leaver for one dedicated cloud-only user. Independently read back the managed group memberships and account state.
-3. Capture directory audit evidence from the Entra portal on the day of testing. Keep this scenario independent from AD DS and directory synchronization.
+1. Create dedicated static Finance and IT security groups in the Entra admin center.
+2. Use Graph PowerShell to retrieve the groups and direct members. Add a cloud-only test user to the Finance group and export a membership snapshot locally.
+3. Review the report against the test user's new department. Record the reason for removing obsolete Finance access and granting IT access.
+4. Apply the membership changes through Graph and read both groups again. Save an example CSV with synthetic identities for the repository.
 
 ## Verification
 
-Record observed results and deviations in the test record. Capture the planned evidence after running each scenario.
+Record the observed outcome in the test record and capture the planned screenshots after each scenario.

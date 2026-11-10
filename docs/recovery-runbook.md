@@ -1,6 +1,6 @@
 # Recovery runbook
 
-**Status** · Planned procedure. Validate it on Day 06.
+**Status** · Planned procedure. Add recovery handling on Day 07 and validate it on Day 08.
 
 1. Record the run ID, event ID, directory, target and last confirmed step.
 2. Read the current account state and direct managed memberships.

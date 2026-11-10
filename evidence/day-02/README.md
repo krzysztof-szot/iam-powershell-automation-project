@@ -1,10 +1,9 @@
-# Day 02 — Joiner in Active Directory evidence
+# Day 02 — Active Directory user management evidence
 
 [Implementation plan](../../docs/day-02.md) · [Test record](../../tests/day-02.md)
 
 | Planned file | Intended observation |
 | --- | --- |
-| `01-user-created.png` | Successful creation and subsequent account lookup. |
-| `02-finance-access-allowed.png` | Finance share opens under the test identity. |
-| `03-it-access-denied.png` | Access to the IT share is denied under the same identity. |
-| `04-joiner-rerun-noop.png` | The second run performs zero writes. |
+| `01-lab-ou-and-users.png` | The dedicated OU contains the two test accounts. |
+| `02-scoped-user-query.png` | The filtered query is restricted to the lab OU. |
+| `03-user-attributes-before-after.png` | Independent reads show the Department and Title values before and after the update. |

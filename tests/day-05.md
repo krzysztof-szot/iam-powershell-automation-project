@@ -1,9 +1,9 @@
-# Day 05 — Cloud-only lifecycle in Entra ID Free tests
+# Day 05 — Entra security groups and manual access review tests
 
 [Implementation plan](../docs/day-05.md) · [Evidence checklist](../evidence/day-05/README.md)
 
 | ID | Procedure | Expected | Actual | Status | Planned evidence |
-| --- | --- | --- | --- | --- | --- | --- |
-| D05-01 | Apply Joiner to a dedicated cloud-only account | The account exists with the Finance membership. | Pending | Planned | `01-graph-joiner.png` |
-| D05-02 | Apply Mover and then Leaver | IT replaces Finance, then the account is disabled and managed groups are removed. | Pending | Planned | `02-cloud-membership-before-after.png` |
-| D05-03 | Inspect Entra Audit Logs | Recorded operations match the lab actor, target and time. | Pending | Planned | `04-entra-audit-event.png` |
+| --- | --- | --- | --- | --- | --- |
+| D05-01 | Add the lab user to Finance and export direct memberships | The export and independent read show the expected group and user. | Pending | Planned | `01-cloud-membership-before.png`, `02-membership-report.png` |
+| D05-02 | Record the access decision for the department change | The review identifies the exact membership to remove and the reason. | Pending | Planned | `02-membership-report.png` |
+| D05-03 | Apply the approved membership changes through Graph | Finance membership is absent and IT membership is present. | Pending | Planned | `03-cloud-membership-after.png` |

@@ -1,4 +1,4 @@
-# Day 04 — Leaver in Active Directory
+# Day 04 — Entra ID user management with Microsoft Graph
 
 **Status** · Planned
 
@@ -6,14 +6,15 @@
 
 ## Objective
 
-Disable a disposable domain account and remove project-managed access.
+Practice user management in Entra ID Free through the portal and delegated Microsoft Graph PowerShell.
 
 ## Implementation plan
 
-1. Approve the lab Leaver plan and disable the account before removing project-managed groups.
-2. Read back account status and membership. Keep the account for inspection until the capstone cleanup.
-3. Attempt fresh domain authentication with DC connectivity and capture the relevant Security log event if auditing is enabled.
+1. Create a dedicated cloud-only test user in the Entra admin center.
+2. Connect with `Connect-MgGraph`. Use `Get-MgContext` to check the intended tenant, operator and delegated scopes. Verify the scope and role requirements in the [permissions guide](permissions.md) before making changes.
+3. Read the test account with `Get-MgUser`. Update a selected attribute with `Update-MgUser`, then independently read the same property again.
+4. Create a second cloud-only test account through `New-MgUser` and verify its intended properties. Record the scopes and operator role used without recording secrets or private identifiers.
 
 ## Verification
 
-Record observed results and deviations in the test record. Capture the planned evidence after running each scenario.
+Record the observed outcome in the test record and capture the planned screenshots after each scenario.

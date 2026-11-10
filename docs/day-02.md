@@ -1,4 +1,4 @@
-# Day 02 — Joiner in Active Directory
+# Day 02 — Active Directory user management
 
 **Status** · Planned
 
@@ -6,14 +6,15 @@
 
 ## Objective
 
-Create a disposable domain user from a synthetic HR event and prove that the intended access is available.
+Learn how to create, locate and update disposable domain users through the AD console and PowerShell.
 
 ## Implementation plan
 
-1. Resolve the employee to a stable lab identity and validate the target OU and groups before applying changes.
-2. Create the lab user and grant the Finance group. Record account creation and group assignment as separate operations.
-3. Validate membership independently and try both test shares in a fresh session on the Windows client. Run the same event again.
+1. Open Active Directory Users and Computers. Create or reuse the dedicated `IAM-Automation` OU and create the first test account in it.
+2. Read the account with `Get-ADUser`. Practice a filter and an OU-scoped search with `-SearchBase`.
+3. Use `New-ADUser` to create a second test account in the same OU. Read its current `Department` and `Title`, update them with `Set-ADUser`, and query them again.
+4. Save a small PowerShell example for reading and updating a lab account. Keep passwords and local directory identifiers out of the published example.
 
 ## Verification
 
-Record observed results and deviations in the test record. Capture the planned evidence after running each scenario.
+Record the observed outcome in the test record and capture the planned screenshots after each scenario.

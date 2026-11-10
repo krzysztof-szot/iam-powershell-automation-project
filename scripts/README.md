@@ -1,10 +1,10 @@
 # PowerShell entry points
 
-The following entry points are planned for implementation during the lab.
+The AD examples from Days 02 and 03 will feed into the lifecycle script on Day 07. The Entra and Graph exercises in Days 04 and 05 use their own cloud-only test accounts.
 
 | Script | Responsibility |
 | --- | --- |
-| `Invoke-IamLifecycle.ps1` | Accept an HR event and target directory, preview the plan, and apply only after explicit approval. |
-| `Get-IamAccessDrift.ps1` | Report unexpected or missing direct memberships in managed groups. |
+| `Invoke-IamLifecycle.ps1` | Accept a synthetic HR event, preview the plan for AD DS and honor explicit `Apply` intent and PowerShell `-WhatIf`. |
+| `Get-IamAccessDrift.ps1` | Report unexpected or missing direct memberships if you choose the access drift track on Day 06. |
 
-Shared planning and directory-specific operations belong in [the IAM module](../src/IamAutomation/README.md). See [Day 01](../docs/day-01.md) for the first implementation step.
+Shared planning and AD operations belong in the IAM module. [Module notes](../src/IamAutomation/README.md) · [Day 07 lifecycle exercise](../docs/day-07.md)
