@@ -1,0 +1,16 @@
+# Lab configuration, exports and runtime logs
+local-output/
+config/*.local.json
+*.log
+*.trx
+TestResults/
+coverage/
+
+# Local credentials and certificates
+.env
+.env.*
+*.secret
+*.pfx
+*.p12
+*.pem
+*.key

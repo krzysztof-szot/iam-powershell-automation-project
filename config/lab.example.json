@@ -1,0 +1,18 @@
+{
+  "ad": {
+    "domain": "example.test",
+    "testOu": "OU=IAM-Automation,DC=example,DC=test",
+    "groupMap": {
+      "FinanceAccess": "CN=GG-IAM-LAB-Finance,OU=IAM-Automation,DC=example,DC=test",
+      "ITAccess": "CN=GG-IAM-LAB-IT,OU=IAM-Automation,DC=example,DC=test"
+    }
+  },
+  "entra": {
+    "tenantId": "<lab-tenant-id>",
+    "userPrincipalNameSuffix": "<lab-domain>.onmicrosoft.com",
+    "groupMap": {
+      "FinanceAccess": "<finance-group-object-id>",
+      "ITAccess": "<it-group-object-id>"
+    }
+  }
+}
