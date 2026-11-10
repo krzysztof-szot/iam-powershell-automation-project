@@ -1,5 +1,19 @@
 # IAM PowerShell Automation — Baltic Finance Lab
 
+<p align="center">
+  <img alt="8 planned labs" src="https://img.shields.io/badge/LABS-8%20PLANNED-6f42c1?style=for-the-badge">
+  <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
+</p>
+
+<p align="center">
+  <img alt="Active Directory Domain Services" src="https://img.shields.io/badge/Microsoft-AD%20DS-0078D4?style=flat-square">
+  <img alt="Microsoft Entra ID Free" src="https://img.shields.io/badge/Microsoft-Entra%20ID%20Free-0078D4?style=flat-square">
+  <img alt="Microsoft Graph" src="https://img.shields.io/badge/Microsoft-Graph-5C2D91?style=flat-square">
+  <img alt="PowerShell automation" src="https://img.shields.io/badge/PowerShell-Automation-3973B9?style=flat-square">
+  <img alt="VMware lab" src="https://img.shields.io/badge/VMware-Lab-607078?style=flat-square">
+  <img alt="Pester tests" src="https://img.shields.io/badge/Pester-Tests-805AD5?style=flat-square">
+</p>
+
 An eight-day PowerShell lab for automating Joiner, Mover and Leaver events in Active Directory Domain Services and Microsoft Entra ID Free. AD DS on VMware is the primary environment. The Entra exercise uses separate cloud-only test identities.
 
 **Status** · Repository scaffold. Implementation, lab results and screenshots are pending.
