@@ -1,7 +1,7 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="3 of 8 labs documented" src="https://img.shields.io/badge/LABS-3%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
+  <img alt="4 of 8 labs documented" src="https://img.shields.io/badge/LABS-4%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
@@ -16,7 +16,7 @@
 
 An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Days 01–03 documented with thirteen screenshots and two PowerShell examples. Days 04–08 are planned.
+**Status** · Days 01–04 documented with seventeen screenshots and two PowerShell examples. Days 05–08 are planned.
 
 ## Project overview
 
@@ -42,7 +42,7 @@ flowchart LR
 | 01 | Lab setup and PowerShell basics | [Record](docs/day-01.md) | [Tests](tests/day-01.md) | [Evidence](evidence/day-01/README.md) | Documented |
 | 02 | Active Directory user management | [Record](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) | Documented |
 | 03 | Active Directory groups and effective access | [Record](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) | Documented |
-| 04 | Entra ID user management with Microsoft Graph | [Plan](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Planned |
+| 04 | Entra ID user management with Microsoft Graph | [Record](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Documented |
 | 05 | Entra security groups and manual access review | [Plan](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Planned |
 | 06 | Optional AD-to-Entra synchronization or access drift report | [Plan](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Planned |
 | 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Planned |
@@ -60,7 +60,7 @@ flowchart LR
 
 ## Featured evidence
 
-The evidence from Days 01–03 connects the lab environment to account queries, attribute changes, CSV validation and effective access changes after a department-group transfer.
+The evidence from Days 01–04 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes and Entra user management through Microsoft Graph.
 
 <table>
 <tr>
@@ -109,6 +109,18 @@ The evidence from Days 01–03 connects the lab environment to account queries, 
   <a href="evidence/day-03/README.md"><img src="evidence/day-03/05-it-access-allowed.png" alt="IT proof file successfully read by iam.gui01 after transfer" width="100%"></a><br>
   <strong>IT access verified</strong><br>
   <sub>The transferred test identity reads its new department file</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-04/README.md"><img src="evidence/day-04/03-graph-attribute-before-after.png" alt="Entra user attributes read before and after Update-MgUser" width="100%"></a><br>
+  <strong>Graph attribute update</strong><br>
+  <sub>Department and JobTitle verified through independent reads</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-04/README.md"><img src="evidence/day-04/04-graph-created-user.png" alt="Enabled Graph-created user retrieved with the intended attributes" width="100%"></a><br>
+  <strong>Graph user creation</strong><br>
+  <sub>New-MgUser followed by account read-back</sub>
 </td>
 </tr>
 </table>

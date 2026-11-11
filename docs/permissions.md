@@ -10,6 +10,34 @@ The Day 01 tenant overview displays Microsoft Entra ID P2. The planned basic use
 
 Review Microsoft Graph permission requirements for the user operations in Day 04 and the group operations in Day 05. Record the scopes and operator role used in the lab. If you collect Entra audit evidence, capture it in the admin center on the day of the exercise.
 
+## Day 04 recorded Graph context
+
+The guided connection requested `User.ReadWrite.All` with `ContextScope Process`. The captured Get-MgContext view reports `AuthType=Delegated` and `ContextScope=Process`, with the visible operator alias `bg01`. The account domain and tenant ID are redacted.
+
+The displayed scopes are transcribed from that context view:
+
+```text
+Application.Read.All
+Application.ReadWrite.All
+Directory.Read.All
+Directory.ReadWrite.All
+Group.Read.All
+Group.ReadWrite.All
+GroupMember.ReadWrite.All
+openid
+Policy.Read.All
+profile
+RoleManagement.Read.Directory
+RoleManagement.ReadWrite.Directory
+User.Read.All
+User.ReadWrite.All
+email
+```
+
+The requested scope and the additional displayed grants are both part of the lab record. The successful Update-MgUser and New-MgUser calls with independent read-back establish the observed authorization for those user-management operations. [Day 04 record](day-04.md) · [Context screenshot](../evidence/day-04/02-graph-context-redacted.png)
+
+## Synchronization and references
+
 For the optional synchronization exercise, verify the active configuration and the intended OU scope before exporting changes. [Day 06](day-06.md)
 
 - [Microsoft Entra log retention](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention)

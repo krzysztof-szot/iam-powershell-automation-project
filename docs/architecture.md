@@ -48,6 +48,19 @@ The lab uses an existing VMware domain controller, a Windows client with domain 
 
 [Day 03 lab record](day-03.md) · [Screenshots](../evidence/day-03/README.md)
 
+## Day 04 recorded cloud identities
+
+| Component | Recorded observation |
+| --- | --- |
+| Portal-created identity | IAM Cloud Portal User / iam.cloud01, Member |
+| Updated attributes | Department=IT, JobTitle=IAM Automation Trainee |
+| Graph session | Delegated authentication, Process context, visible account alias bg01 |
+| Displayed permissions | User.ReadWrite.All plus the additional scopes recorded in the permissions guide |
+| Graph-created identity | IAM Cloud Graph User / iam.graph01, AccountEnabled=True |
+| New account attributes | Department=Finance, JobTitle=IAM Lab User |
+
+[Day 04 lab record](day-04.md) · [Screenshots](../evidence/day-04/README.md) · [Graph context](permissions.md#day-04-recorded-graph-context)
+
 ## Planned AD lifecycle workflow
 
 1. Validate the input and the lab boundary.
