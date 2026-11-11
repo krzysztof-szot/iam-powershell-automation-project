@@ -99,7 +99,7 @@ flowchart LR
 
 [Day 06 lab record](day-06.md) · [Screenshots](../evidence/day-06/README.md) · [Permissions and coverage](permissions.md#day-06-recorded-cloud-sync-operations)
 
-## Planned AD lifecycle workflow
+## Day 07 recorded AD lifecycle workflow
 
 1. Validate the input and the lab boundary.
 2. Read current state and calculate changes from the access matrix.
@@ -107,4 +107,28 @@ flowchart LR
 4. Recheck relevant state, apply scoped changes and record step outcomes.
 5. Verify directory state and collect independent access evidence where applicable.
 
-Use `config/lab.local.json` for actual identifiers and `local-output/` for logs or exports.
+The Day 07 execution uses BFL-DC01, Windows PowerShell 5.1 and the lab administrator. The disposable identity iam.lab001 / LAB-001 lives in OU=JML,OU=IAM-Automation. Only GG-IAM-LAB-Finance and GG-IAM-LAB-IT directly in IAM-Automation are managed. The separate IAM-Sync identity remains outside this workflow.
+
+| Stage | Enabled | Department | Finance direct member | IT direct member | Applied steps |
+| --- | --- | --- | --- | --- | --- |
+| Joiner | True | Finance | True | False | 2 |
+| Mover | True | IT | False | True | 3 |
+| Leaver | False | IT | False | False | 2 |
+
+Each stage has an independent AD read and a completed CSV audit view with zero failed records. Sixteen screenshots record the full exercise. Fresh workstation access and authentication checks remain in Day 08.
+
+~~~mermaid
+flowchart LR
+    CSV["Synthetic HR event"] --> VAL["Validate exact lab scope"]
+    CFG["Local config and access matrix"] --> VAL
+    VAL --> SNAP["Read AD on configured DC"]
+    SNAP --> PLAN["Compute current-state plan"]
+    PLAN --> PRE["Default Preview / WhatIf"]
+    PLAN --> APPLY["Explicit Apply / ShouldProcess"]
+    APPLY --> WRITE["Re-read, bind GUIDs and write"]
+    WRITE --> CHECK["Fresh read-back"]
+    CHECK --> LOG["Per-step CSV audit"]
+    CHECK --> VERIFY["Independent AD verification"]
+~~~
+
+Use config/lab.local.json for actual identifiers and local-output/ for logs or exports. [Day 07 record](day-07.md) · [Evidence](../evidence/day-07/README.md)

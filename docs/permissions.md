@@ -56,6 +56,20 @@ The anchor check calculates a Base64 value from the AD source and compares it wi
 
 [Day 06 record](day-06.md) · [Result checks](../tests/day-06.md) · [Screenshots](../evidence/day-06/README.md)
 
+## Day 07 recorded AD lifecycle operations
+
+The execution uses BFL\Administrator on BFL-DC01 with the ActiveDirectory module in Windows PowerShell 5.1. This records a lab-administrator run, not validation of delegated least-privilege permissions.
+
+The script checks the configured DNS domain and DC, the exact JML OU, the two Security group DNs and the synthetic LAB-nnn identity. It rejects ambiguous matches, mismatched identities, targets outside the exact synthetic account DN and protected/critical objects. Existing account and group writes use objectGUID bindings and the configured server, with fresh reads around each operation.
+
+Default Preview and Apply with WhatIf make no intended AD writes. Audit CSV creation remains enabled in these modes. Apply uses ShouldProcess before each write; native AD confirmation is suppressed only after that guard has permitted the operation.
+
+The new-account password is supplied as a SecureString. The isolated lab account is created enabled with ChangePasswordAtLogon=False for subsequent workstation testing. Passwords are excluded from the audit fields. The script manages only the two direct lab group memberships and does not delete accounts or reactivate a disabled account.
+
+The captured Joiner, Mover and Leaver runs completed with 2, 3 and 2 applied steps. Independent reads confirm the expected state after each stage. Disabled-account authentication and active-session behavior were not tested on Day 07.
+
+[Day 07 record](day-07.md) · [Evidence](../evidence/day-07/README.md) · [Recovery](recovery-runbook.md)
+
 ## Synchronization and references
 
 Day 06 records the existing Cloud Sync engine, its selected-group scope, one scoped test identity and the on-demand result details. [Day 06](day-06.md)

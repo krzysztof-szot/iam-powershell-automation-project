@@ -6,6 +6,7 @@
 | --- | --- |
 | [day-02-user-attributes.ps1](day-02-user-attributes.ps1) | Read iam.ps01, set Department to IT and Title to IAM Automation Trainee, and read the attributes again. |
 | [day-03-group-memberships.ps1](day-03-group-memberships.ps1) | Read direct members of the Finance and IT lab groups and report whether iam.gui01 is present. |
+| [Invoke-IamLifecycle.ps1](Invoke-IamLifecycle.ps1) | Preview or apply one synthetic Joiner, Mover or Leaver event in the isolated JML OU; log and verify each step. |
 
 Use the Day 02 example in a PowerShell session with the ActiveDirectory module and permission to update `iam.ps01` in the intended lab domain. Start from the repository root:
 
@@ -31,13 +32,34 @@ The Day 06 evidence records New-ADGroup, Add-ADGroupMember, Set-ADUser and Get-M
 
 [Day 06 record](../docs/day-06.md) · [Captured commands and results](../evidence/day-06/README.md)
 
-## Planned entry points
+## Day 07 lifecycle entry point
 
-The AD examples from Days 02 and 03 will feed into the lifecycle script on Day 07. The Entra and Graph exercises in Days 04 and 05 use their own cloud-only test accounts.
+Copy config/lab.example.json to config/lab.local.json and set the actual lab DC, domain, exact JML OU and group DNs. Keep schemaVersion 1. Local configuration and runtime logs are ignored by Git. The optional Entra section is not used by this AD-only entry point.
 
-| Script | Responsibility |
-| --- | --- |
-| `Invoke-IamLifecycle.ps1` | Accept a synthetic HR event, preview the plan for AD DS and honor explicit `Apply` intent and PowerShell `-WhatIf`. |
-| `Get-IamAccessDrift.ps1` | Optional future extension: report unexpected or missing direct memberships in AD and Entra. Day 06 completed the Cloud Sync track. |
+From the repository root:
 
-Shared planning and AD operations belong in the IAM module. [Module notes](../src/IamAutomation/README.md) · [Day 07 lifecycle exercise](../docs/day-07.md)
+~~~powershell
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-001'
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-001' -Apply -WhatIf
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-001' -Apply
+
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-002'
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-002' -Apply
+
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-003'
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-003' -Apply
+~~~
+
+Review the corresponding preview before applying. The default event file is samples/hr-events.example.csv; ConfigPath, MatrixPath, EventsPath and OutputDirectory can override the default paths.
+
+A new Joiner prompts for a SecureString password only after ShouldProcess permits account creation. InitialPassword also accepts a caller-supplied SecureString; it is never written to the audit. Keep the lab password locally for fresh workstation tests. The lab creation sets ChangePasswordAtLogon=False.
+
+Each run creates a CSV under local-output, including Preview and WhatIf. A successful run reports Completed with zero remaining operations. At its completed current stage, a repeated event can report NoChange. Existing disabled accounts are never reactivated by Joiner.
+
+For a controlled Day 08 Mover recovery exercise only, SimulateFailureAfterRemoval deliberately throws after the successful old-group removal. Inspect the audit and a new preview, then retry without that switch. [Recovery procedure](../docs/recovery-runbook.md)
+
+[Day 07 lab record](../docs/day-07.md) · [Module notes](../src/IamAutomation/README.md) · [Tests](../tests/day-07.md)
+
+## Future extension
+
+Get-IamAccessDrift.ps1 remains an optional future report for unexpected or missing direct memberships in AD and Entra. Day 06 completed the Cloud Sync track; the lifecycle entry point is AD-only.

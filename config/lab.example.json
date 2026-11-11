@@ -1,7 +1,9 @@
 {
+  "schemaVersion": 1,
   "ad": {
+    "server": "dc01.example.test",
     "domain": "example.test",
-    "testOu": "OU=IAM-Automation,DC=example,DC=test",
+    "testOu": "OU=JML,OU=IAM-Automation,DC=example,DC=test",
     "groupMap": {
       "FinanceAccess": "CN=GG-IAM-LAB-Finance,OU=IAM-Automation,DC=example,DC=test",
       "ITAccess": "CN=GG-IAM-LAB-IT,OU=IAM-Automation,DC=example,DC=test"

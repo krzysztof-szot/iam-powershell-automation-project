@@ -1,7 +1,7 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="6 of 8 labs documented" src="https://img.shields.io/badge/LABS-6%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
+  <img alt="7 of 8 labs documented" src="https://img.shields.io/badge/LABS-7%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
@@ -16,11 +16,11 @@
 
 An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Days 01–06 documented with thirty-seven screenshots, two PowerShell examples and two membership reports. Days 07–08 are planned.
+**Status** · Days 01–07 documented with fifty-three screenshots, two introductory PowerShell examples, a working AD lifecycle entry point/module and two membership reports. Day 08 is planned.
 
 ## Project overview
 
-The first labs build skills with PowerShell pipelines, domain accounts, security groups and Microsoft Graph. The capstone combines the AD exercises into a Joiner–Mover–Leaver workflow driven by synthetic HR events. It previews proposed changes, applies them within the lab scope and verifies the outcome through SMB access and a fresh domain logon attempt.
+The first labs build skills with PowerShell pipelines, domain accounts, security groups and Microsoft Graph. The capstone combines the AD exercises into a Joiner–Mover–Leaver workflow driven by synthetic HR events. The recorded Day 07 workflow previews changes, applies them in the isolated JML OU and verifies account/group state independently. Day 08 will validate fresh SMB access, disabled-account domain authentication, repeated events and live recovery.
 
 Days 04 and 05 use separate cloud-only test identities. Day 06 uses the existing Microsoft Entra Cloud Sync agent for a dedicated AD test user, diagnoses a scope issue, compares its source anchor and verifies a department change through Graph. The recorded synchronization requests were run on demand.
 
@@ -47,7 +47,7 @@ flowchart LR
 | 04 | Entra ID user management with Microsoft Graph | [Record](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Documented |
 | 05 | Entra security groups and manual access review | [Record](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Documented |
 | 06 | Scoped Cloud Sync, source anchor and attribute propagation | [Record](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Documented |
-| 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Planned |
+| 07 | Build the Joiner–Mover–Leaver automation | [Record](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Documented |
 | 08 | Capstone, Pester and portfolio review | [Plan](docs/day-08.md) | [Tests](tests/day-08.md) | [Evidence](evidence/day-08/README.md) | Planned |
 
 ## Repository guide
@@ -55,7 +55,9 @@ flowchart LR
 - [Architecture and lab prerequisites](docs/architecture.md)
 - [Permissions and lab boundaries](docs/permissions.md)
 - [Recovery runbook](docs/recovery-runbook.md)
-- [PowerShell examples and planned entry points](scripts/README.md)
+- [PowerShell examples and lifecycle usage](scripts/README.md)
+- [AD lifecycle entry point](scripts/Invoke-IamLifecycle.ps1) and [module](src/IamAutomation/IamAutomation.psm1)
+- [Offline lifecycle checks](tests/offline/Lifecycle.Checks.ps1)
 - [Example access policy](config/access-matrix.example.json)
 - [Synthetic HR events](samples/hr-events.example.csv)
 - [Day 05 membership review report](samples/membership-review.csv) and [final-state report](samples/membership-after.csv)
@@ -63,7 +65,7 @@ flowchart LR
 
 ## Featured evidence
 
-The evidence from Days 01–06 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes, Graph user management, a department-based membership review and scoped hybrid identity synchronization.
+The evidence from Days 01–07 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes, Graph user management, membership review, scoped hybrid synchronization and the implemented AD Joiner–Mover–Leaver workflow.
 
 <table>
 <tr>
@@ -148,6 +150,30 @@ The evidence from Days 01–06 connects the lab environment to account queries, 
   <a href="evidence/day-06/README.md"><img src="evidence/day-06/17-graph-department-after-sync.png" alt="Fresh Graph read confirming Department IT after the AD department update" width="100%"></a><br>
   <strong>Department propagation verified</strong><br>
   <sub>Finance → IT confirmed after an on-demand Cloud Sync update</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-07/README.md"><img src="evidence/day-07/05-lifecycle-whatif.png" alt="Two planned operations, zero applied and unchanged AD state" width="100%"></a><br>
+  <strong>Lifecycle WhatIf</strong><br>
+  <sub>Two planned operations, zero applied and unchanged AD state</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-07/README.md"><img src="evidence/day-07/06-lifecycle-joiner-applied.png" alt="Account creation and Finance grant verified after Apply" width="100%"></a><br>
+  <strong>Joiner completed</strong><br>
+  <sub>Account creation and Finance grant verified after Apply</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-07/README.md"><img src="evidence/day-07/11-lifecycle-mover-verification.png" alt="Department IT, Finance=False and IT=True" width="100%"></a><br>
+  <strong>Mover independently verified</strong><br>
+  <sub>Department IT, Finance=False and IT=True</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-07/README.md"><img src="evidence/day-07/15-lifecycle-leaver-verification.png" alt="Account disabled and both managed memberships absent" width="100%"></a><br>
+  <strong>Leaver independently verified</strong><br>
+  <sub>Account disabled and both managed memberships absent</sub>
 </td>
 </tr>
 </table>
