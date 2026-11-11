@@ -22,6 +22,18 @@ The lab uses an existing VMware domain controller, a Windows client with domain 
 
 [Day 01 lab record](day-01.md) · [Screenshots](../evidence/day-01/README.md)
 
+## Day 02 recorded AD scope
+
+| Component | Recorded observation |
+| --- | --- |
+| Dedicated OU | `OU=IAM-Automation,DC=balticfinance,DC=test` |
+| First test user | IAM GUI User / iam.gui01, Enabled=True |
+| Second test user | IAM PowerShell User / iam.ps01, Enabled=True at the scoped query |
+| Attribute update | iam.ps01 Department=IT, Title=IAM Automation Trainee |
+| Saved example | scripts/day-02-user-attributes.ps1 |
+
+[Day 02 lab record](day-02.md) · [Screenshots](../evidence/day-02/README.md)
+
 ## Planned AD lifecycle workflow
 
 1. Validate the input and the lab boundary.

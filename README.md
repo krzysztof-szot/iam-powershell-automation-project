@@ -1,7 +1,7 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="1 of 8 labs documented" src="https://img.shields.io/badge/LABS-1%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
+  <img alt="2 of 8 labs documented" src="https://img.shields.io/badge/LABS-2%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
@@ -16,7 +16,7 @@
 
 An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Day 01 documented with four screenshots and four passed result checks. Days 02–08 are planned.
+**Status** · Days 01–02 documented with seven screenshots and an AD attribute script. Days 03–08 are planned.
 
 ## Project overview
 
@@ -40,7 +40,7 @@ flowchart LR
 | Day | Milestone | Documentation | Tests | Evidence | Status |
 | --- | --- | --- | --- | --- | --- |
 | 01 | Lab setup and PowerShell basics | [Record](docs/day-01.md) | [Tests](tests/day-01.md) | [Evidence](evidence/day-01/README.md) | Documented |
-| 02 | Active Directory user management | [Plan](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) | Planned |
+| 02 | Active Directory user management | [Record](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) | Documented |
 | 03 | Active Directory groups and effective access | [Plan](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) | Planned |
 | 04 | Entra ID user management with Microsoft Graph | [Plan](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Planned |
 | 05 | Entra security groups and manual access review | [Plan](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Planned |
@@ -53,14 +53,14 @@ flowchart LR
 - [Architecture and lab prerequisites](docs/architecture.md)
 - [Permissions and lab boundaries](docs/permissions.md)
 - [Recovery runbook](docs/recovery-runbook.md)
-- [PowerShell entry points](scripts/README.md)
+- [PowerShell examples and planned entry points](scripts/README.md)
 - [Example access policy](config/access-matrix.example.json)
 - [Synthetic HR events](samples/hr-events.example.csv)
 - [Evidence guide](evidence/README.md)
 
 ## Featured evidence
 
-The Day 01 evidence connects the lab environment to the recorded PowerShell and CSV results.
+The evidence from Days 01–02 connects the lab environment to recorded account queries, attribute changes and CSV results.
 
 <table>
 <tr>
@@ -85,6 +85,18 @@ The Day 01 evidence connects the lab environment to the recorded PowerShell and 
   <a href="evidence/day-01/README.md"><img src="evidence/day-01/04-synthetic-csv.png" alt="Synthetic CSV content and successful one-row reimport" width="100%"></a><br>
   <strong>Synthetic CSV validation</strong><br>
   <sub>File content and one-record reimport</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-02/README.md"><img src="evidence/day-02/02-scoped-user-query.png" alt="Two enabled test users returned from the dedicated AD OU" width="100%"></a><br>
+  <strong>Scoped AD user query</strong><br>
+  <sub>Two test accounts read from IAM-Automation</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-02/README.md"><img src="evidence/day-02/03-user-attributes-before-after.png" alt="Department and Title verified before and after Set-ADUser" width="100%"></a><br>
+  <strong>Attribute update and verification</strong><br>
+  <sub>Department and Title read before and after the change</sub>
 </td>
 </tr>
 </table>
