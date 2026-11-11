@@ -1,0 +1,3 @@
+"UserAlias","Department","Group","CurrentMember","ExpectedMember","Decision","Reason"
+"iam.cloud01","IT","SG-IAM-LAB-Finance","True","False","Remove","Department requires SG-IAM-LAB-IT"
+"iam.cloud01","IT","SG-IAM-LAB-IT","False","True","Add","Department requires SG-IAM-LAB-IT"
