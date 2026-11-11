@@ -5,6 +5,7 @@
 <p align="center">
   <img alt="8 documented labs" src="https://img.shields.io/badge/LABS-8%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Educational scope completed" src="https://img.shields.io/badge/STATUS-COMPLETED-238636?style=for-the-badge">
+  <img alt="79 evidence screenshots" src="https://img.shields.io/badge/EVIDENCE-79%20SCREENSHOTS-0078D4?style=for-the-badge">
 </p>
 
 <p align="center">
