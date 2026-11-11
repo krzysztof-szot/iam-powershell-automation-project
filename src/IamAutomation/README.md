@@ -14,4 +14,4 @@ The [entry point](../../scripts/Invoke-IamLifecycle.ps1) supplies default paths 
 
 [Live results and boundaries](../../docs/day-07.md) · [Offline validation](../../tests/day-07.md) · [Recovery](../../docs/recovery-runbook.md)
 
-Graph operations from the earlier days remain separate from this AD module. A future drift report can reuse the policy keys without mixing directory ownership.
+Graph operations from the earlier days remain separate from this AD module.

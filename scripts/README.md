@@ -35,7 +35,7 @@ The Day 06 evidence records New-ADGroup, Add-ADGroupMember, Set-ADUser and Get-M
 
 ## Day 07 lifecycle entry point
 
-Copy config/lab.example.json to config/lab.local.json and set the actual lab DC, domain, exact JML OU and group DNs. Keep schemaVersion 1. Local configuration and runtime logs are ignored by Git. The optional Entra section is not used by this AD-only entry point.
+Copy config/lab.example.json to config/lab.local.json and set the actual lab DC, domain, exact JML OU and group DNs. Keep schemaVersion 1. Local configuration and runtime logs are ignored by Git. This configuration is for the AD-only lifecycle entry point; the earlier Graph and Cloud Sync exercises are documented separately.
 
 From the repository root:
 
@@ -80,7 +80,3 @@ The separate Initialize-CapstoneScopeTest.ps1 helper is specific to the recorded
 The second command is expected to fail the exact account-DN boundary. The live before/after read confirms unchanged state and zero write-step starts. The operator then manually removes only the fixture's temporary Finance membership. This manual test setup/cleanup does not broaden the lifecycle configuration.
 
 [Day 08 record and results](../docs/day-08.md) · [Scope evidence](../evidence/day-08/README.md) · [Pester instructions](../tests/unit/README.md)
-
-## Future extension
-
-Get-IamAccessDrift.ps1 remains an optional future report for unexpected or missing direct memberships in AD and Entra. Day 06 completed the Cloud Sync track; the lifecycle entry point is AD-only.

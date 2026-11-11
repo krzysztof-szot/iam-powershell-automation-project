@@ -1,6 +1,6 @@
 # Offline Pester tests
 
-The CI workflow pins Pester 5.7.1. Lifecycle.Tests.ps1 covers input validation, exact account/OU/group boundaries, lifecycle ordering, WhatIf writer mocks, same-stage repeats, partial Mover recovery, binding changes, read-back and audit failures. Repository.Tests.ps1 checks the repository scaffold and example policy/feed.
+The CI workflow pins Pester 5.7.1. Lifecycle.Tests.ps1 covers input validation, exact account/OU/group boundaries, lifecycle ordering, WhatIf writer mocks, same-stage repeats, partial Mover recovery, binding changes, read-back and audit failures. Repository.Tests.ps1 checks the daily lab records, example AD policy mappings and synthetic event feed.
 
 Run the full suite in a fresh PowerShell 7 process (pwsh). CI uses PowerShell 7 with Pester 5.7.1; the existing repository checks use ConvertFrom-Json -AsHashtable. The AD entry point itself retains Windows PowerShell 5.1 support, separately exercised by the assertion runner.
 

@@ -1,6 +1,6 @@
 # Evidence guide
 
-Each daily folder contains a screenshot index and the observation each image supports. Completed days link the uploaded files and recorded results; planned days retain their screenshot checklists.
+Each of the eight completed daily folders contains a screenshot index, links to the uploaded images and the observation each image supports.
 
 Redact credentials, tokens, real identities, tenant identifiers and unrelated details before adding files to Git. Keep raw exports and console logs in `local-output/`.
 

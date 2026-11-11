@@ -7,7 +7,7 @@ BeforeAll {
     $events = Import-Csv (Join-Path $repoRoot 'samples/hr-events.example.csv')
 }
 
-Describe 'IAM lab scaffold' {
+Describe 'IAM repository records and examples' {
     It 'includes an implementation, test and evidence record for every day' {
         foreach ($day in 1..8) {
             $number = '{0:00}' -f $day
@@ -17,10 +17,9 @@ Describe 'IAM lab scaffold' {
         }
     }
 
-    It 'maps every example policy entitlement in both environments' {
+    It 'maps every example policy entitlement to a managed AD group' {
         foreach ($entitlement in ($matrix.departments.Values | ForEach-Object { $_ })) {
             $lab.ad.groupMap.ContainsKey($entitlement) | Should -BeTrue
-            $lab.entra.groupMap.ContainsKey($entitlement) | Should -BeTrue
         }
     }
 
