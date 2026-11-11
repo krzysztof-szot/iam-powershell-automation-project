@@ -36,6 +36,14 @@ email
 
 The requested scope and the additional displayed grants are both part of the lab record. The successful Update-MgUser and New-MgUser calls with independent read-back establish the observed authorization for those user-management operations. [Day 04 record](day-04.md) · [Context screenshot](../evidence/day-04/02-graph-context-redacted.png)
 
+## Day 05 guided group operations
+
+The connection parameters requested `User.Read.All` to read the test identity and department, `Group.Read.All` to resolve the lab groups, and `GroupMember.ReadWrite.All` for membership operations. The procedure used `ContextScope Process`.
+
+The guided group setup used Security groups with Assigned membership and the role-assignable setting at No. The correction used `Remove-MgGroupMemberByRef` for the membership reference and `New-MgGroupMemberByRef` for the new membership. Fresh direct-member queries and the uploaded reports record the resulting state. [Day 05 record](day-05.md) · [Result evidence](../evidence/day-05/README.md)
+
+The requested Day 05 parameters are recorded here separately from the captured Day 04 Get-MgContext scope list above.
+
 ## Synchronization and references
 
 For the optional synchronization exercise, verify the active configuration and the intended OU scope before exporting changes. [Day 06](day-06.md)

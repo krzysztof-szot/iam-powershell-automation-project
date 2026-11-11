@@ -61,6 +61,19 @@ The lab uses an existing VMware domain controller, a Windows client with domain 
 
 [Day 04 lab record](day-04.md) · [Screenshots](../evidence/day-04/README.md) · [Graph context](permissions.md#day-04-recorded-graph-context)
 
+## Day 05 recorded membership review
+
+| Component | Recorded observation |
+| --- | --- |
+| Test identity | IAM Cloud Portal User / iam.cloud01, Department=IT |
+| Policy | Finance maps to SG-IAM-LAB-Finance, IT maps to SG-IAM-LAB-IT |
+| Controlled initial state | Finance membership present, IT membership absent |
+| Review decision | Remove Finance and add IT because Department requires SG-IAM-LAB-IT |
+| Final direct memberships | Finance=False, IT=True |
+| Reports | [Review snapshot](../samples/membership-review.csv), [final state](../samples/membership-after.csv) |
+
+[Day 05 lab record](day-05.md) · [Screenshots](../evidence/day-05/README.md)
+
 ## Planned AD lifecycle workflow
 
 1. Validate the input and the lab boundary.

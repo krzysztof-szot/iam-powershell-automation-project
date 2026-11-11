@@ -1,7 +1,7 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="4 of 8 labs documented" src="https://img.shields.io/badge/LABS-4%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
+  <img alt="5 of 8 labs documented" src="https://img.shields.io/badge/LABS-5%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
@@ -16,7 +16,7 @@
 
 An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Days 01–04 documented with seventeen screenshots and two PowerShell examples. Days 05–08 are planned.
+**Status** · Days 01–05 documented with twenty screenshots, two PowerShell examples and two membership reports. Days 06–08 are planned.
 
 ## Project overview
 
@@ -43,7 +43,7 @@ flowchart LR
 | 02 | Active Directory user management | [Record](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) | Documented |
 | 03 | Active Directory groups and effective access | [Record](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) | Documented |
 | 04 | Entra ID user management with Microsoft Graph | [Record](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Documented |
-| 05 | Entra security groups and manual access review | [Plan](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Planned |
+| 05 | Entra security groups and manual access review | [Record](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Documented |
 | 06 | Optional AD-to-Entra synchronization or access drift report | [Plan](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Planned |
 | 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Planned |
 | 08 | Capstone, Pester and portfolio review | [Plan](docs/day-08.md) | [Tests](tests/day-08.md) | [Evidence](evidence/day-08/README.md) | Planned |
@@ -56,11 +56,12 @@ flowchart LR
 - [PowerShell examples and planned entry points](scripts/README.md)
 - [Example access policy](config/access-matrix.example.json)
 - [Synthetic HR events](samples/hr-events.example.csv)
+- [Day 05 membership review report](samples/membership-review.csv) and [final-state report](samples/membership-after.csv)
 - [Evidence guide](evidence/README.md)
 
 ## Featured evidence
 
-The evidence from Days 01–04 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes and Entra user management through Microsoft Graph.
+The evidence from Days 01–05 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes, Graph user management and a department-based membership review.
 
 <table>
 <tr>
@@ -121,6 +122,18 @@ The evidence from Days 01–04 connects the lab environment to account queries, 
   <a href="evidence/day-04/README.md"><img src="evidence/day-04/04-graph-created-user.png" alt="Enabled Graph-created user retrieved with the intended attributes" width="100%"></a><br>
   <strong>Graph user creation</strong><br>
   <sub>New-MgUser followed by account read-back</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-05/README.md"><img src="evidence/day-05/02-membership-report.png" alt="Membership report showing Finance removal and IT addition for an IT-department user" width="100%"></a><br>
+  <strong>Membership review decision</strong><br>
+  <sub>Expected access, observed memberships and the reason for correction</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-05/README.md"><img src="evidence/day-05/03-cloud-membership-after.png" alt="Final membership read showing Finance false and IT true" width="100%"></a><br>
+  <strong>Correction verified</strong><br>
+  <sub>Fresh reads confirm the intended direct memberships</sub>
 </td>
 </tr>
 </table>
