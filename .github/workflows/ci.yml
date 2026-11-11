@@ -19,8 +19,8 @@ jobs:
       - name: Install Pester
         shell: pwsh
         run: Install-Module Pester -RequiredVersion 5.7.1 -Scope CurrentUser -Force
-      - name: Run offline tests
+      - name: Run Pester lifecycle and repository tests
         shell: pwsh
         run: |
           Import-Module Pester -RequiredVersion 5.7.1
-          Invoke-Pester -Path ./tests/unit -CI
+          Invoke-Pester -Path ./tests/unit -CI -Output Detailed

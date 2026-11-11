@@ -1,0 +1,4 @@
+EventId,EventType,EmployeeId,GivenName,Surname,Department
+JML-101,Joiner,LAB-002,Marek,Example,Finance
+JML-102,Mover,LAB-002,Marek,Example,IT
+JML-103,Leaver,LAB-002,Marek,Example,
