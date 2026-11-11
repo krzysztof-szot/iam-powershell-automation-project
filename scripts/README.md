@@ -7,6 +7,7 @@
 | [day-02-user-attributes.ps1](day-02-user-attributes.ps1) | Read iam.ps01, set Department to IT and Title to IAM Automation Trainee, and read the attributes again. |
 | [day-03-group-memberships.ps1](day-03-group-memberships.ps1) | Read direct members of the Finance and IT lab groups and report whether iam.gui01 is present. |
 | [Invoke-IamLifecycle.ps1](Invoke-IamLifecycle.ps1) | Preview or apply one synthetic Joiner, Mover or Leaver event in the isolated JML OU; log and verify each step. |
+| [Initialize-CapstoneScopeTest.ps1](Initialize-CapstoneScopeTest.ps1) | Prepare the recorded lab's disabled outside-OU fixture, temporary Finance membership, scope-test feed and local baseline. |
 
 Use the Day 02 example in a PowerShell session with the ActiveDirectory module and permission to update `iam.ps01` in the intended lab domain. Start from the repository root:
 
@@ -59,6 +60,26 @@ Each run creates a CSV under local-output, including Preview and WhatIf. A succe
 For a controlled Day 08 Mover recovery exercise only, SimulateFailureAfterRemoval deliberately throws after the successful old-group removal. Inspect the audit and a new preview, then retry without that switch. [Recovery procedure](../docs/recovery-runbook.md)
 
 [Day 07 lab record](../docs/day-07.md) · [Module notes](../src/IamAutomation/README.md) · [Tests](../tests/day-07.md)
+
+## Day 08 capstone and scope fixture
+
+The capstone feed is samples/hr-events.day08.example.csv. Select it explicitly with EventsPath when using the repository layout; it contains JML-101/102/103 for LAB-002.
+
+~~~powershell
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-101' -EventsPath '.\samples\hr-events.day08.example.csv' -Apply -WhatIf
+~~~
+
+The separate Initialize-CapstoneScopeTest.ps1 helper is specific to the recorded Baltic Finance lab. It uses the pinned DC and parent IAM-Automation OU to prepare a disabled LAB-003 fixture outside JML and temporary Finance membership. It saves local-output/scope-test-before.json and samples/hr-events.out-of-scope.example.csv, refuses existing identities/files and honors ShouldProcess/WhatIf.
+
+~~~powershell
+.\scripts\Initialize-CapstoneScopeTest.ps1 -ProjectRoot (Get-Location).Path
+
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-201' -EventsPath '.\samples\hr-events.out-of-scope.example.csv' -Apply
+~~~
+
+The second command is expected to fail the exact account-DN boundary. The live before/after read confirms unchanged state and zero write-step starts. The operator then manually removes only the fixture's temporary Finance membership. This manual test setup/cleanup does not broaden the lifecycle configuration.
+
+[Day 08 record and results](../docs/day-08.md) · [Scope evidence](../evidence/day-08/README.md) · [Pester instructions](../tests/unit/README.md)
 
 ## Future extension
 

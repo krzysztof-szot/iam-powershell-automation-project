@@ -70,6 +70,20 @@ The captured Joiner, Mover and Leaver runs completed with 2, 3 and 2 applied ste
 
 [Day 07 record](day-07.md) · [Evidence](../evidence/day-07/README.md) · [Recovery](recovery-runbook.md)
 
+## Day 08 recorded execution and scope test
+
+The controller-side execution continues as BFL\Administrator. The captured client access commands explicitly identify bfl\iam.lab002 on BFL-WKS01. This separates the privileged setup/execution operator from the ordinary identity used for Finance and IT access checks.
+
+The WhatIf verification uses independent native queries for matching accounts and group identities/direct members. The outside-OU verification binds its read to the saved fixture objectGUID and checks the same account fields, revision and membership booleans against the saved baseline.
+
+Manual lab setup creates disabled iam.lab003 directly in IAM-Automation and adds temporary Finance membership. The lifecycle entry point keeps its configured JML boundary and rejects JML-201 before any write step. The test audit records Run Started/Failed with the expected DN error; the account state and Finance membership remain unchanged.
+
+Only after collecting that result, the operator manually removes the temporary Finance membership. The account remains disabled. This fixture setup/cleanup is explicitly separate from the blocked lifecycle operation and is not a relaxation of its scope.
+
+The live test proves new-sign-in rejection for the disabled account. Existing-session termination and delegated least-privilege permissions were outside the exercise. The offline suites use synthetic data, simulated directory operations and read-only repository access in CI.
+
+[Day 08 record](day-08.md) · [Scope evidence](../evidence/day-08/24-capstone-out-of-scope-state-preserved.png) · [Manual cleanup](../evidence/day-08/25-capstone-scope-fixture-cleanup.png)
+
 ## Synchronization and references
 
 Day 06 records the existing Cloud Sync engine, its selected-group scope, one scoped test identity and the on-demand result details. [Day 06](day-06.md)

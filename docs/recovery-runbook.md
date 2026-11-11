@@ -1,6 +1,6 @@
 # Recovery runbook
 
-**Status** · Recovery handling implemented in Day 07 and exercised with simulated AD; live failure/retry evidence is planned for Day 08.
+**Status** · Implemented in Day 07; validated with simulated AD and the live Day 08 controlled Mover exercise.
 
 ## Inspect before retrying
 
@@ -15,22 +15,28 @@ Every write is preceded by an audit Started row and followed by a fresh read-bac
 
 The implementation re-reads current state and binds existing account and group objectGUIDs. Detected replacement, an ambiguous identity, an out-of-scope target or a protected/critical account stops execution. Never broaden the OU/group configuration to bypass a rejection.
 
+## Recorded live recovery
+
+Day 08 applied JML-102 for LAB-002 with the exercise flag. The independent partial-state read confirms Department=IT and neither managed membership. The audit shows successful department update and Finance removal, followed by a Failed Run. A fresh plan contained one IT grant; Apply completed that one step. New-session client checks then denied Finance and allowed IT.
+
+[Partial state](../evidence/day-08/10-capstone-mover-partial-state.png) · [Partial audit](../evidence/day-08/11-capstone-mover-partial-log.png) · [Recovery plan](../evidence/day-08/12-capstone-mover-recovery-preview.png) · [Recovery result](../evidence/day-08/13-capstone-mover-recovery-applied.png)
+
 ## Controlled Mover exercise
 
 Use only a fresh disposable lab identity that is currently in Finance. Review the normal Mover preview first.
 
 ~~~powershell
-.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-002' -Apply -SimulateFailureAfterRemoval
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-102' -EventsPath '.\samples\hr-events.day08.example.csv' -Apply -SimulateFailureAfterRemoval
 ~~~
 
 The exercise flag deliberately fails after the old managed membership has been successfully removed and audited. At that point Department is IT and the target has neither managed department membership. The Run ends Failed; the successful removal retains its Applied record.
 
 ~~~powershell
-.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-002'
-.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-002' -Apply
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-102' -EventsPath '.\samples\hr-events.day08.example.csv'
+.\scripts\Invoke-IamLifecycle.ps1 -EventId 'JML-102' -EventsPath '.\samples\hr-events.day08.example.csv' -Apply
 ~~~
 
-With that partial state, the expected fresh plan contains only AddGroupMember for IT. Do not pass the exercise flag on the retry. The offline checks establish this behavior on simulated AD; the live Day 08 exercise is pending.
+With that partial state, the expected fresh plan contains only AddGroupMember for IT. Do not pass the exercise flag on the retry. Both the simulated checks and the live Day 08 exercise establish this behavior. The recorded LAB-002 is now disabled; prepare a fresh synthetic event/identity set for a new complete exercise.
 
 ## Account creation and lifecycle stage
 

@@ -4,7 +4,7 @@
 
 | Path | Directory and tools | Validation |
 | --- | --- | --- |
-| Domain | Existing VMware Windows Server domain controller, ActiveDirectory PowerShell module, domain-connected Windows client | Account and membership read-back, live SMB access, fresh domain authentication and Windows Security log |
+| Domain | Existing VMware Windows Server domain controller, ActiveDirectory PowerShell module, domain-connected Windows client | Account and membership read-back, live SMB access, fresh domain sign-in result and local CSV audit views |
 | Cloud | Microsoft Entra ID P2 displayed in the Day 01 tenant overview, Microsoft Graph PowerShell with delegated authentication, cloud-only objects for Days 04–05 and an AD-sourced test identity for Day 06 | Graph read-back and Microsoft Entra admin center evidence |
 
 The lab uses an existing VMware domain controller, a Windows client with domain connectivity and a Microsoft Entra tenant. The core user and static-group exercises use capabilities available in Entra ID Free. The recorded Day 01 tenant overview displays Microsoft Entra ID P2. Both directories use the same example policy keys and resolve their own identities and group identifiers. Days 04 and 05 use separate cloud-only test objects. Day 06 uses the existing Microsoft Entra Cloud Sync provisioning agent on BFL-DC01, a dedicated test OU and selected-group scope. Its recorded creation and department-update requests use provision on demand.
@@ -132,3 +132,24 @@ flowchart LR
 ~~~
 
 Use config/lab.local.json for actual identifiers and local-output/ for logs or exports. [Day 07 record](day-07.md) · [Evidence](../evidence/day-07/README.md)
+
+## Day 08 recorded capstone validation
+
+| Component | Observation |
+| --- | --- |
+| Fresh lifecycle identity | Marek Example / iam.lab002 / LAB-002 |
+| Separate working root | C:\IAM-Automation\day-08 |
+| Joiner | Enabled Finance identity; Finance proof file readable from BFL-WKS01 |
+| Partial Mover | Department IT and neither managed membership after the injected stop |
+| Recovery | Fresh plan and Apply contain one missing IT grant |
+| Effective access after recovery | Finance denied; IT readable from a new bfl\iam.lab002 session |
+| Leaver | Disabled account, no managed memberships and Windows disabled-account sign-in rejection |
+| Same-stage repeats | Joiner, Mover and Leaver each report NoChange and zero operations |
+| Scope fixture | Disabled LAB-003 directly in IAM-Automation; requested membership removal rejected outside JML |
+| Scope verification | Object revision/target state unchanged; Finance retained; zero write-step starts |
+| Fixture cleanup | Separate manual Finance removal; LAB-003 remains disabled with neither membership |
+| CI | 41 lifecycle + 3 repository Pester tests, and a separate 50-check assertion runner |
+
+Live operations run in Windows PowerShell 5.1 on the domain controller. The full Pester suite runs with PowerShell 7 and Pester 5.7.1 using TestDrive and a simulated AD module. The cloud/Cloud Sync tracks remain separate from this AD-only capstone.
+
+[Day 08 record](day-08.md) · [Result matrix](../tests/day-08.md) · [Screenshots](../evidence/day-08/README.md) · [CI result](../evidence/day-08/ci-summary.md)
