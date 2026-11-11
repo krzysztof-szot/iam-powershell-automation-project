@@ -1,9 +1,29 @@
 # Day 01 — Lab setup and PowerShell basics evidence
 
-[Implementation plan](../../docs/day-01.md) · [Test record](../../tests/day-01.md)
+Four uploaded screenshots support the recorded result checks. Record updated 2026-11-11.
 
-| Planned file | Intended observation |
-| --- | --- |
-| `01-domain-connectivity.png` | The client is a domain member and can reach the lab domain controller. |
-| `02-powershell-pipeline.png` | The PowerShell pipeline returns the intended test identity and selected properties. |
-| `03-synthetic-csv.png` | The exported CSV can be read back and contains the selected synthetic fields. |
+[Lab record](../../docs/day-01.md) · [Test results](../../tests/day-01.md)
+
+## 01 — Domain membership and controller connectivity
+
+`BFL-WKS01` reports domain `balticfinance.test` and `PartOfDomain=True`. The TCP connection test to `BFL-DC01.balticfinance.test:389` succeeds.
+
+![Client domain membership and successful TCP connection to the domain controller](01-domain-connectivity.png)
+
+## 02 — Tenant and displayed Entra license
+
+The `Baltic Finance Lab` Overview shows `Microsoft Entra ID P2`. The tenant ID and primary domain are redacted.
+
+![Baltic Finance Lab tenant overview with Microsoft Entra ID P2](02-entra-tenant-license.png)
+
+## 03 — AD PowerShell pipeline
+
+The command pipes `Get-ADUser` output through `Where-Object` and `Select-Object`. The selected `anna.finance` account is enabled and belongs to Finance. Its Title field is empty.
+
+![AD user pipeline selecting the Anna Finance test account](03-powershell-pipeline.png)
+
+## 04 — Synthetic CSV contents and reimport
+
+`Get-Content` displays the CSV headers and the `JML-001 / LAB-001 / Finance` record. `Import-Csv` returns that row as a table, and the final count is `Imported rows: 1`.
+
+![Synthetic Joiner CSV inspected and reimported with one record](04-synthetic-csv.png)

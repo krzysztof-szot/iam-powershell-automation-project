@@ -1,22 +1,22 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="8 planned labs" src="https://img.shields.io/badge/LABS-8%20PLANNED-6f42c1?style=for-the-badge">
+  <img alt="1 of 8 labs documented" src="https://img.shields.io/badge/LABS-1%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
 <p align="center">
   <img alt="Active Directory Domain Services" src="https://img.shields.io/badge/Microsoft-AD%20DS-0078D4?style=flat-square">
-  <img alt="Microsoft Entra ID Free" src="https://img.shields.io/badge/Microsoft-Entra%20ID%20Free-0078D4?style=flat-square">
+  <img alt="Microsoft Entra ID P2" src="https://img.shields.io/badge/Microsoft-Entra%20ID%20P2-0078D4?style=flat-square">
   <img alt="Microsoft Graph" src="https://img.shields.io/badge/Microsoft-Graph-5C2D91?style=flat-square">
   <img alt="PowerShell automation" src="https://img.shields.io/badge/PowerShell-Automation-3973B9?style=flat-square">
   <img alt="VMware lab" src="https://img.shields.io/badge/VMware-Lab-607078?style=flat-square">
   <img alt="Pester tests" src="https://img.shields.io/badge/Pester-Tests-805AD5?style=flat-square">
 </p>
 
-An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID Free.
+An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Repository scaffold. The daily exercises and their evidence are planned.
+**Status** · Day 01 documented with four screenshots and four passed result checks. Days 02–08 are planned.
 
 ## Project overview
 
@@ -27,7 +27,7 @@ The Entra labs use separate cloud-only test identities. Day 06 offers either an 
 ```mermaid
 flowchart LR
     B["PowerShell basics"] --> AD["AD DS user and group exercises"]
-    B --> E["Entra ID Free and Microsoft Graph exercises"]
+    B --> E["Microsoft Entra ID and Microsoft Graph exercises"]
     AD --> JML["AD Joiner–Mover–Leaver"]
     HR["Synthetic HR events and access matrix"] --> JML
     JML --> V["Plan, apply and verify"]
@@ -37,16 +37,16 @@ flowchart LR
 
 ## Quick Lab Index
 
-| Day | Milestone | Implementation plan | Test cases | Screenshot checklist |
-| --- | --- | --- | --- | --- |
-| 01 | Lab setup and PowerShell basics | [Plan](docs/day-01.md) | [Tests](tests/day-01.md) | [Evidence](evidence/day-01/README.md) |
-| 02 | Active Directory user management | [Plan](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) |
-| 03 | Active Directory groups and effective access | [Plan](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) |
-| 04 | Entra ID user management with Microsoft Graph | [Plan](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) |
-| 05 | Entra security groups and manual access review | [Plan](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) |
-| 06 | Optional AD-to-Entra synchronization or access drift report | [Plan](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) |
-| 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) |
-| 08 | Capstone, Pester and portfolio review | [Plan](docs/day-08.md) | [Tests](tests/day-08.md) | [Evidence](evidence/day-08/README.md) |
+| Day | Milestone | Documentation | Tests | Evidence | Status |
+| --- | --- | --- | --- | --- | --- |
+| 01 | Lab setup and PowerShell basics | [Record](docs/day-01.md) | [Tests](tests/day-01.md) | [Evidence](evidence/day-01/README.md) | Documented |
+| 02 | Active Directory user management | [Plan](docs/day-02.md) | [Tests](tests/day-02.md) | [Evidence](evidence/day-02/README.md) | Planned |
+| 03 | Active Directory groups and effective access | [Plan](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) | Planned |
+| 04 | Entra ID user management with Microsoft Graph | [Plan](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Planned |
+| 05 | Entra security groups and manual access review | [Plan](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Planned |
+| 06 | Optional AD-to-Entra synchronization or access drift report | [Plan](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Planned |
+| 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Planned |
+| 08 | Capstone, Pester and portfolio review | [Plan](docs/day-08.md) | [Tests](tests/day-08.md) | [Evidence](evidence/day-08/README.md) | Planned |
 
 ## Repository guide
 
@@ -60,7 +60,34 @@ flowchart LR
 
 ## Featured evidence
 
-The gallery will link to verified evidence for the PowerShell pipeline, the Finance-to-IT access change, the lifecycle preview and the final logon denial.
+The Day 01 evidence connects the lab environment to the recorded PowerShell and CSV results.
+
+<table>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-01/README.md"><img src="evidence/day-01/01-domain-connectivity.png" alt="Domain membership and controller connectivity" width="100%"></a><br>
+  <strong>Domain connectivity</strong><br>
+  <sub>BFL-WKS01 membership and TCP 389 reachability</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-01/README.md"><img src="evidence/day-01/02-entra-tenant-license.png" alt="Tenant overview showing Microsoft Entra ID P2" width="100%"></a><br>
+  <strong>Microsoft Entra ID P2</strong><br>
+  <sub>Recorded tenant overview with redacted identifiers</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-01/README.md"><img src="evidence/day-01/03-powershell-pipeline.png" alt="AD user query with Where-Object and Select-Object" width="100%"></a><br>
+  <strong>PowerShell pipeline</strong><br>
+  <sub>Filtered AD account and selected properties</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-01/README.md"><img src="evidence/day-01/04-synthetic-csv.png" alt="Synthetic CSV content and successful one-row reimport" width="100%"></a><br>
+  <strong>Synthetic CSV validation</strong><br>
+  <sub>File content and one-record reimport</sub>
+</td>
+</tr>
+</table>
 
 ## Related labs
 

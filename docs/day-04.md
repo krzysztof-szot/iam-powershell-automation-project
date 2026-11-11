@@ -6,7 +6,7 @@
 
 ## Objective
 
-Practice user management in Entra ID Free through the portal and delegated Microsoft Graph PowerShell.
+Practice user management in the lab Entra tenant through the portal and delegated Microsoft Graph PowerShell. The Day 01 overview displays Microsoft Entra ID P2.
 
 ## Implementation plan
 
