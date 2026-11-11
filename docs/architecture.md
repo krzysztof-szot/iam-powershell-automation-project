@@ -34,6 +34,20 @@ The lab uses an existing VMware domain controller, a Windows client with domain 
 
 [Day 02 lab record](day-02.md) · [Screenshots](../evidence/day-02/README.md)
 
+## Day 03 recorded access model
+
+| Component | Recorded observation |
+| --- | --- |
+| Finance share | IAM-LAB-Finance, department SMB Read and NTFS ReadAndExecute |
+| IT share | IAM-LAB-IT, department SMB Read and NTFS ReadAndExecute |
+| Lab folders | `C:\LabShares\IAM-Automation\Finance` and `C:\LabShares\IAM-Automation\IT` |
+| Transfer identity | iam.gui01, Finance membership before and IT membership after |
+| Effective access | Finance proof file readable before transfer, denied afterward. IT proof file readable afterward. |
+| Separate account state test | iam.ps01 Enabled=True → False → True |
+| Saved example | scripts/day-03-group-memberships.ps1 |
+
+[Day 03 lab record](day-03.md) · [Screenshots](../evidence/day-03/README.md)
+
 ## Planned AD lifecycle workflow
 
 1. Validate the input and the lab boundary.

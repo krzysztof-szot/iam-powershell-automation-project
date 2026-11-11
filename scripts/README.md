@@ -1,10 +1,11 @@
 # PowerShell entry points
 
-## Available example
+## Available examples
 
 | Script | Purpose |
 | --- | --- |
 | [day-02-user-attributes.ps1](day-02-user-attributes.ps1) | Read iam.ps01, set Department to IT and Title to IAM Automation Trainee, and read the attributes again. |
+| [day-03-group-memberships.ps1](day-03-group-memberships.ps1) | Read direct members of the Finance and IT lab groups and report whether iam.gui01 is present. |
 
 Use the Day 02 example in a PowerShell session with the ActiveDirectory module and permission to update `iam.ps01` in the intended lab domain. Start from the repository root:
 
@@ -13,6 +14,16 @@ Use the Day 02 example in a PowerShell session with the ActiveDirectory module a
 ```
 
 Each run writes the two configured attribute values. The BEFORE and AFTER sections show the account state observed during that run. The source was reviewed and syntax-checked, and the Day 02 screenshots record the original console sequence. [Lab record](../docs/day-02.md) · [Test results](../tests/day-02.md)
+
+## Day 03 membership report
+
+Run the membership example in a PowerShell session with the ActiveDirectory module and access to read the two lab groups. Start from the repository root:
+
+```powershell
+.\scripts\day-03-group-memberships.ps1
+```
+
+The script reads direct group membership and prints SamAccountName, Group and IsMember. After the recorded transfer, the expected values for iam.gui01 are Finance=False and IT=True. The uploaded source was reviewed and syntax-checked. The retained screenshots independently record the lab membership change and the resulting SMB access. [Day 03 record](../docs/day-03.md) · [Test results](../tests/day-03.md)
 
 ## Planned entry points
 
