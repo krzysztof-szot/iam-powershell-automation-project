@@ -3,7 +3,7 @@
 | Environment | Planned access | Boundary |
 | --- | --- | --- |
 | AD DS | Read lab identities and groups. Delegate user and group changes to the dedicated lab OU and groups. | Validate domain, target OU and managed groups before writing. |
-| Microsoft Entra ID | Separate delegated Microsoft Graph permissions and an appropriate signed-in operator role. | Validate tenant, account type and managed group IDs. Use dedicated cloud-only test identities and static security groups. |
+| Microsoft Entra ID | Separate delegated Microsoft Graph permissions and an appropriate signed-in operator role. | Validate tenant, account type and managed group IDs. Use dedicated cloud-only test identities for Days 04–05, an AD-sourced test user for Day 06 and static security groups. |
 | GitHub Actions | Read repository contents for offline PowerShell tests. | Use synthetic fixtures. |
 
 The Day 01 tenant overview displays Microsoft Entra ID P2. The planned basic user and static-group exercises use capabilities available in Entra ID Free.
@@ -44,10 +44,24 @@ The guided group setup used Security groups with Assigned membership and the rol
 
 The requested Day 05 parameters are recorded here separately from the captured Day 04 Get-MgContext scope list above.
 
+## Day 06 recorded Cloud Sync operations
+
+The captured local operator is BFL\\Administrator on BFL-DC01. The guided creation targeted the dedicated IAM-Sync OU. The captured console operations create GG-IAM-LAB-Sync as a Global Security group, add iam.sync01 directly and change only the test user's Department to IT. The observation establishes use of the lab administrator account; delegated OU permissions were outside this exercise.
+
+The existing Cloud Sync agent performs the Entra creation and update through Provision on demand for the exact test-user DN. The selected-group filter was extended with the dedicated group, and the saved view retains the original three entries. Its initial overview shows Configuration status=Disabled.
+
+The guided Graph connection requested User.Read.All with ContextScope Process. The recorded Graph commands are Get-MgUser reads with explicit property selection. The published Day 06 images establish successful reads, but do not capture a new Get-MgContext scope list or the signed-in cloud operator's assigned role. The Day 04 captured context remains documented above.
+
+The anchor check calculates a Base64 value from the AD source and compares it with onPremisesImmutableId. The captured output reports objectGUID and three True comparisons. The exercise records on-demand creation and attribute propagation. Recurring-job health, password propagation and sign-in are outside the result claims.
+
+[Day 06 record](day-06.md) · [Result checks](../tests/day-06.md) · [Screenshots](../evidence/day-06/README.md)
+
 ## Synchronization and references
 
-For the optional synchronization exercise, verify the active configuration and the intended OU scope before exporting changes. [Day 06](day-06.md)
+Day 06 records the existing Cloud Sync engine, its selected-group scope, one scoped test identity and the on-demand result details. [Day 06](day-06.md)
 
 - [Microsoft Entra log retention](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention)
 - [Microsoft Graph user update permissions](https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0)
 - [Microsoft Graph group membership removal](https://learn.microsoft.com/en-us/graph/api/group-delete-members?view=graph-rest-1.0)
+- [Cloud Sync scope configuration](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/how-to-configure)
+- [Cloud Sync source anchor selection](https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/plan-cloud-sync-topologies)

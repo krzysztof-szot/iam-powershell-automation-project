@@ -5,9 +5,9 @@
 | Path | Directory and tools | Validation |
 | --- | --- | --- |
 | Domain | Existing VMware Windows Server domain controller, ActiveDirectory PowerShell module, domain-connected Windows client | Account and membership read-back, live SMB access, fresh domain authentication and Windows Security log |
-| Cloud | Microsoft Entra ID P2 displayed in the Day 01 tenant overview, Microsoft Graph PowerShell with delegated authentication, separate cloud-only lab objects | Graph read-back and Microsoft Entra admin center evidence |
+| Cloud | Microsoft Entra ID P2 displayed in the Day 01 tenant overview, Microsoft Graph PowerShell with delegated authentication, cloud-only objects for Days 04–05 and an AD-sourced test identity for Day 06 | Graph read-back and Microsoft Entra admin center evidence |
 
-The lab uses an existing VMware domain controller, a Windows client with domain connectivity and a Microsoft Entra tenant. The core user and static-group exercises use capabilities available in Entra ID Free. The recorded Day 01 tenant overview displays Microsoft Entra ID P2. Both directories use the same example policy keys and resolve their own identities and group identifiers. Days 04 and 05 use separate cloud-only test objects. Day 06 offers Entra Connect Sync in a dedicated test OU or a report that compares expected and actual memberships in each directory.
+The lab uses an existing VMware domain controller, a Windows client with domain connectivity and a Microsoft Entra tenant. The core user and static-group exercises use capabilities available in Entra ID Free. The recorded Day 01 tenant overview displays Microsoft Entra ID P2. Both directories use the same example policy keys and resolve their own identities and group identifiers. Days 04 and 05 use separate cloud-only test objects. Day 06 uses the existing Microsoft Entra Cloud Sync provisioning agent on BFL-DC01, a dedicated test OU and selected-group scope. Its recorded creation and department-update requests use provision on demand.
 
 ## Day 01 recorded environment
 
@@ -73,6 +73,31 @@ The lab uses an existing VMware domain controller, a Windows client with domain 
 | Reports | [Review snapshot](../samples/membership-review.csv), [final state](../samples/membership-after.csv) |
 
 [Day 05 lab record](day-05.md) · [Screenshots](../evidence/day-05/README.md)
+
+## Day 06 recorded Cloud Sync path
+
+| Component | Recorded observation |
+| --- | --- |
+| Agent | AADConnectProvisioningAgent Running on BFL-DC01; registered agent active |
+| Initial configuration | balticfinance.test Cloud Sync overview shows Disabled |
+| Test OU | `OU=IAM-Sync,OU=IAM-Automation,DC=balticfinance,DC=test` |
+| Identity | IAM Sync User; AD iam.sync01 and cloud alias bfl.iam.sync01 |
+| Scope correction | Global Security group GG-IAM-LAB-Sync contains one direct test member and becomes the fourth selected group |
+| Initial skipped request | JoinNotFound with detailed Scoping filter evaluation passed=False |
+| Identity correlation | SourceAnchorAttribute=objectGUID; SAM name, DN and Base64 anchor comparisons True |
+| Attribute propagation | Department Finance → IT in AD, exported update, fresh Graph Department=IT |
+| Recorded mode | Provision on demand; recurring-cycle operation was outside the tests |
+
+```mermaid
+flowchart LR
+    PS["BFL-DC01 / AD PowerShell"] --> U["iam.sync01 / IAM-Sync OU"]
+    U --> C["Cloud Sync / provision on demand"]
+    SG["GG-IAM-LAB-Sync / direct membership"] -->|"Selected-group scope"| C
+    C --> E["Entra / bfl.iam.sync01"]
+    E --> G["Get-MgUser / anchor and attribute checks"]
+```
+
+[Day 06 lab record](day-06.md) · [Screenshots](../evidence/day-06/README.md) · [Permissions and coverage](permissions.md#day-06-recorded-cloud-sync-operations)
 
 ## Planned AD lifecycle workflow
 

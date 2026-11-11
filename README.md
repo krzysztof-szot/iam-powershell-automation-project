@@ -1,7 +1,7 @@
 <h1 align="center">IAM PowerShell Automation Project</h1>
 
 <p align="center">
-  <img alt="5 of 8 labs documented" src="https://img.shields.io/badge/LABS-5%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
+  <img alt="6 of 8 labs documented" src="https://img.shields.io/badge/LABS-6%20OF%208%20DOCUMENTED-6f42c1?style=for-the-badge">
   <img alt="Project in progress" src="https://img.shields.io/badge/STATUS-IN%20PROGRESS-b36b00?style=for-the-badge">
 </p>
 
@@ -16,13 +16,13 @@
 
 An eight-day lab for learning PowerShell through identity and access management in Active Directory Domain Services on VMware and Microsoft Entra ID. The Day 01 tenant overview displays Microsoft Entra ID P2.
 
-**Status** · Days 01–05 documented with twenty screenshots, two PowerShell examples and two membership reports. Days 06–08 are planned.
+**Status** · Days 01–06 documented with thirty-seven screenshots, two PowerShell examples and two membership reports. Days 07–08 are planned.
 
 ## Project overview
 
 The first labs build skills with PowerShell pipelines, domain accounts, security groups and Microsoft Graph. The capstone combines the AD exercises into a Joiner–Mover–Leaver workflow driven by synthetic HR events. It previews proposed changes, applies them within the lab scope and verifies the outcome through SMB access and a fresh domain logon attempt.
 
-The Entra labs use separate cloud-only test identities. Day 06 offers either an isolated Entra Connect Sync exercise or an access drift report for both directories.
+Days 04 and 05 use separate cloud-only test identities. Day 06 uses the existing Microsoft Entra Cloud Sync agent for a dedicated AD test user, diagnoses a scope issue, compares its source anchor and verifies a department change through Graph. The recorded synchronization requests were run on demand.
 
 ```mermaid
 flowchart LR
@@ -33,6 +33,8 @@ flowchart LR
     JML --> V["Plan, apply and verify"]
     V --> S["Windows SMB and domain logon tests"]
     E --> R["Cloud membership report and manual review"]
+    AD --> CS["Day 06: dedicated Cloud Sync test identity"]
+    CS --> GV["Graph anchor and attribute verification"]
 ```
 
 ## Quick Lab Index
@@ -44,7 +46,7 @@ flowchart LR
 | 03 | Active Directory groups and effective access | [Record](docs/day-03.md) | [Tests](tests/day-03.md) | [Evidence](evidence/day-03/README.md) | Documented |
 | 04 | Entra ID user management with Microsoft Graph | [Record](docs/day-04.md) | [Tests](tests/day-04.md) | [Evidence](evidence/day-04/README.md) | Documented |
 | 05 | Entra security groups and manual access review | [Record](docs/day-05.md) | [Tests](tests/day-05.md) | [Evidence](evidence/day-05/README.md) | Documented |
-| 06 | Optional AD-to-Entra synchronization or access drift report | [Plan](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Planned |
+| 06 | Scoped Cloud Sync, source anchor and attribute propagation | [Record](docs/day-06.md) | [Tests](tests/day-06.md) | [Evidence](evidence/day-06/README.md) | Documented |
 | 07 | Build the Joiner–Mover–Leaver automation | [Plan](docs/day-07.md) | [Tests](tests/day-07.md) | [Evidence](evidence/day-07/README.md) | Planned |
 | 08 | Capstone, Pester and portfolio review | [Plan](docs/day-08.md) | [Tests](tests/day-08.md) | [Evidence](evidence/day-08/README.md) | Planned |
 
@@ -61,7 +63,7 @@ flowchart LR
 
 ## Featured evidence
 
-The evidence from Days 01–05 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes, Graph user management and a department-based membership review.
+The evidence from Days 01–06 connects the lab environment to account queries, attribute changes, CSV validation, effective access changes, Graph user management, a department-based membership review and scoped hybrid identity synchronization.
 
 <table>
 <tr>
@@ -134,6 +136,18 @@ The evidence from Days 01–05 connects the lab environment to account queries, 
   <a href="evidence/day-05/README.md"><img src="evidence/day-05/03-cloud-membership-after.png" alt="Final membership read showing Finance false and IT true" width="100%"></a><br>
   <strong>Correction verified</strong><br>
   <sub>Fresh reads confirm the intended direct memberships</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-06/README.md"><img src="evidence/day-06/14-sync-anchor-verification.png" alt="Source anchor comparison showing matching SAM name, DN and Base64 anchor" width="100%"></a><br>
+  <strong>Hybrid identity correlation</strong><br>
+  <sub>AD source anchor compared with Graph onPremisesImmutableId</sub>
+</td>
+<td width="50%" align="center" valign="top">
+  <a href="evidence/day-06/README.md"><img src="evidence/day-06/17-graph-department-after-sync.png" alt="Fresh Graph read confirming Department IT after the AD department update" width="100%"></a><br>
+  <strong>Department propagation verified</strong><br>
+  <sub>Finance → IT confirmed after an on-demand Cloud Sync update</sub>
 </td>
 </tr>
 </table>

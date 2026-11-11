@@ -25,6 +25,12 @@ Run the membership example in a PowerShell session with the ActiveDirectory modu
 
 The script reads direct group membership and prints SamAccountName, Group and IsMember. After the recorded transfer, the expected values for iam.gui01 are Finance=False and IT=True. The uploaded source was reviewed and syntax-checked. The retained screenshots independently record the lab membership change and the resulting SMB access. [Day 03 record](../docs/day-03.md) · [Test results](../tests/day-03.md)
 
+## Day 06 recorded console workflow
+
+The Day 06 evidence records New-ADGroup, Add-ADGroupMember, Set-ADUser and Get-MgUser operations for the dedicated Cloud Sync test identity. The lab record explains the selected-group correction, source-anchor comparison and on-demand department update.
+
+[Day 06 record](../docs/day-06.md) · [Captured commands and results](../evidence/day-06/README.md)
+
 ## Planned entry points
 
 The AD examples from Days 02 and 03 will feed into the lifecycle script on Day 07. The Entra and Graph exercises in Days 04 and 05 use their own cloud-only test accounts.
@@ -32,6 +38,6 @@ The AD examples from Days 02 and 03 will feed into the lifecycle script on Day 0
 | Script | Responsibility |
 | --- | --- |
 | `Invoke-IamLifecycle.ps1` | Accept a synthetic HR event, preview the plan for AD DS and honor explicit `Apply` intent and PowerShell `-WhatIf`. |
-| `Get-IamAccessDrift.ps1` | Report unexpected or missing direct memberships if you choose the access drift track on Day 06. |
+| `Get-IamAccessDrift.ps1` | Optional future extension: report unexpected or missing direct memberships in AD and Entra. Day 06 completed the Cloud Sync track. |
 
 Shared planning and AD operations belong in the IAM module. [Module notes](../src/IamAutomation/README.md) · [Day 07 lifecycle exercise](../docs/day-07.md)
